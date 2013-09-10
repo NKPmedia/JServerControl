@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.swing.JOptionPane;
 
 import de.nkpmedia.jservercontrol.log.Log;
 
@@ -33,12 +34,18 @@ public class Security
 		{
 			secKeyFile.createNewFile();
 			FileOutputStream keyFileOutStream = new FileOutputStream(secKeyFile); 
-			keyFileOutStream.write(secKey.getEncoded());
+			
+			String pass = JOptionPane.showInputDialog("Enter your Passphrase.");
+			ReadWriteAES.encode(secKey.getEncoded(), keyFileOutStream, pass);
+			
 			keyFileOutStream.flush();
 			keyFileOutStream.close();
 		} catch (IOException e)
 		{
 			Log.logError("Can't create the key file", e);
+		} catch (Exception e)
+		{
+			Log.logError("Can't encode the key", e);
 		}
 		
 	}
