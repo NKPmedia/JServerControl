@@ -2,13 +2,14 @@ package de.nkpmedia.jservercontrol.log;
 
 public class Log
 {
-	static void log(String log){
+	public static void log(String log){
 		System.out.println(log);
 	}
-	static void logError(String log){
+	public static void logError(String log,Exception e){
 		System.out.println(log);
+		e.printStackTrace();
 	}
-	static void logMessage(String log){
+	public static void logMessage(String log){
 		System.out.println(log);
 	}
 }
