@@ -13,15 +13,13 @@ public class JServerControl
 
 	}
 
-	private Config config;
-	public Security security;
+
+	private Controler controler;
+
 
 	private void start()
 	{
-		this.security = new Security();
-		this.config = new Config(this);
-		this.config.loadConfig();
-		
+		this.controler = new Controler();
 	}
 
 }

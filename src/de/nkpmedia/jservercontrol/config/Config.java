@@ -21,6 +21,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
+import de.nkpmedia.jservercontrol.Controler;
 import de.nkpmedia.jservercontrol.JServerControl;
 import de.nkpmedia.jservercontrol.log.Log;
 
@@ -28,11 +29,11 @@ import de.nkpmedia.jservercontrol.log.Log;
 public class Config
 {
 	public File workspaceAt = null;
-	private JServerControl MainClass;
+	private Controler MainClass;
 
-	public Config(JServerControl jServerControl)
+	public Config(Controler controler)
 	{
-		this.MainClass = jServerControl;
+		this.MainClass = controler;
 	}
 
 	//Load the configfiles into the RAM
