@@ -1,7 +1,7 @@
 package de.nkpmedia.jservercontrol;
 
-import de.nkpmedia.jservercontrol.config.Config;
-import de.nkpmedia.jservercontrol.config.Security;
+import de.nkpmedia.jservercontrol.model.config.Config;
+import de.nkpmedia.jservercontrol.model.config.Security;
 
 public class JServerControl
 {
@@ -14,12 +14,12 @@ public class JServerControl
 	}
 
 
-	private Controler controler;
+	private Controller controller;
 
 
 	private void start()
 	{
-		this.controler = new Controler();
+		this.controller = new Controller();
 	}
 
 }

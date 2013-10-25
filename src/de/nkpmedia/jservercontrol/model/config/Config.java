@@ -1,4 +1,4 @@
-package de.nkpmedia.jservercontrol.config;
+package de.nkpmedia.jservercontrol.model.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,19 +21,20 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 import org.xml.sax.InputSource;
 
-import de.nkpmedia.jservercontrol.Controler;
+import de.nkpmedia.jservercontrol.Controller;
 import de.nkpmedia.jservercontrol.JServerControl;
+import de.nkpmedia.jservercontrol.Model;
 import de.nkpmedia.jservercontrol.log.Log;
 
 
 public class Config
 {
 	public File workspaceAt = null;
-	private Controler MainClass;
+	private Model model;
 
-	public Config(Controler controler)
+	public Config(Model model)
 	{
-		this.MainClass = controler;
+		this.model= model;
 	}
 
 	//Load the configfiles into the RAM
@@ -41,7 +42,7 @@ public class Config
 		File workspace = getWorkspace();
 		
 		if(!new File(workspace.getAbsolutePath()+"/JServerControl.conf").exists()){
-			int pane = JOptionPane.showConfirmDialog( null, "Wollen sie eine neue Arbeitsumgebung erstellen?" );
+			int pane = this.model.controller.showConfirmDialog( null, "Wollen sie eine neue Arbeitsumgebung erstellen?" );
 			if(pane == 0){
 				createNewWorkspace(workspace.getAbsolutePath());
 		}
@@ -50,7 +51,7 @@ public class Config
 		SAXBuilder builder = new SAXBuilder();
 		try
 		{
-			String xmlFile = new String(ReadWriteAES.decode(new FileInputStream(workspace.getAbsolutePath()+"/config.xml"), this.MainClass.security.getSecKey(this)));
+			String xmlFile = new String(ReadWriteAES.decode(new FileInputStream(workspace.getAbsolutePath()+"/config.xml"), this.model.security.getSecKey(this)));
 			Document doc = builder.build(new StringReader(xmlFile));
 			Log.log("Configfile has been read.");
 			Element rootElement = doc.getRootElement();
@@ -77,7 +78,7 @@ public class Config
 			Log.logError("Can't write new basic config for the new Workspace", e);
 		}
 		
-		this.MainClass.security.genNewKeys(workspacePath);
+		this.model.security.genNewKeys(workspacePath);
 		this.genNewConfig(workspacePath);
 		
 	}
@@ -87,7 +88,7 @@ public class Config
 		File configFile = new File(workspacePath + "/config.xml");
 		try
 		{
-			this.MainClass.security.writeConfig(getClass().getClassLoader().getResourceAsStream("de/nkpmedia/jservercontrol/config/basicConfig.xml"),configFile);
+			this.model.security.writeConfig(getClass().getClassLoader().getResourceAsStream("de/nkpmedia/jservercontrol/config/basicConfig.xml"),configFile);
 		} catch (Exception e)
 		{
 			Log.logError("Can't write basic configfile", e);
@@ -98,16 +99,8 @@ public class Config
 	//Returns a File with the directory to the workspace
 	private File getWorkspace(){
 		if(this.workspaceAt == null){
-			final JFileChooser chooser = new JFileChooser("Wähle deine Workspace");
-	        chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-	        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-	        final File file = new File("/home");
-	
-	        chooser.setCurrentDirectory(file);
-	
-	        chooser.setVisible(true);
-	        chooser.showOpenDialog(null); 
-	        File result = chooser.getSelectedFile();
+			
+	        File result = this.model.controller.fileChooser("/home",JFileChooser.OPEN_DIALOG,JFileChooser.DIRECTORIES_ONLY);
 	        Log.logMessage("Select the workspace: "+result.getPath());
 	        this.workspaceAt = result;
 	        return result;

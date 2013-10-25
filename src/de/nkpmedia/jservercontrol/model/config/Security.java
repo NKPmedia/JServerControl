@@ -1,4 +1,4 @@
-package de.nkpmedia.jservercontrol.config;
+package de.nkpmedia.jservercontrol.model.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,12 +16,19 @@ import javax.swing.JOptionPane;
 
 import org.jdom2.Document;
 
+import de.nkpmedia.jservercontrol.Model;
 import de.nkpmedia.jservercontrol.log.Log;
 
 public class Security
 {
 	private String passphrase = null;
 	private byte[] secKey = null;
+	private Model model;
+
+	public Security(Model model)
+	{
+		this.model = model;
+	}
 
 	//Gen a new Key for encryption of the workspace and a passphrase
 	public void genNewKeys(String workspacePath)
@@ -43,7 +50,7 @@ public class Security
 			secKeyFile.createNewFile();
 			FileOutputStream keyFileOutStream = new FileOutputStream(secKeyFile); 
 			
-			String pass = JOptionPane.showInputDialog("Enter your new passphrase.");
+			String pass = this.model.controller.showInputDialog("Enter your passphrase.");
 			this.passphrase = pass;
 			ReadWriteAES.encode(secKey.getEncoded(), keyFileOutStream, pass);
 			
@@ -87,7 +94,7 @@ public class Security
 	{
 		if(this.secKey == null)
 		{
-			String pass = JOptionPane.showInputDialog("Enter your passphrase.");
+			String pass = this.model.controller.showInputDialog("Enter your passphrase.");
 			try
 			{
 				Log.log("Reading sec key at "+config.workspaceAt+"/sec.key");

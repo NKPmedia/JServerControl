@@ -1,4 +1,4 @@
-package de.nkpmedia.jservercontrol.config;
+package de.nkpmedia.jservercontrol.model.config;
 
 import java.io.*;
 import java.security.InvalidKeyException;
