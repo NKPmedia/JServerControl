@@ -1,10 +1,25 @@
 package de.nkpmedia.jservercontrol.config;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
+import org.xml.sax.InputSource;
 
 import de.nkpmedia.jservercontrol.JServerControl;
 import de.nkpmedia.jservercontrol.log.Log;
@@ -12,7 +27,7 @@ import de.nkpmedia.jservercontrol.log.Log;
 
 public class Config
 {
-	private File workspaceAt = null;
+	public File workspaceAt = null;
 	private JServerControl MainClass;
 
 	public Config(JServerControl jServerControl)
@@ -28,7 +43,22 @@ public class Config
 			int pane = JOptionPane.showConfirmDialog( null, "Wollen sie eine neue Arbeitsumgebung erstellen?" );
 			if(pane == 0){
 				createNewWorkspace(workspace.getAbsolutePath());
-			}
+		}
+	}
+		Log.log("Reading configfile");
+		SAXBuilder builder = new SAXBuilder();
+		try
+		{
+			String xmlFile = new String(ReadWriteAES.decode(new FileInputStream(workspace.getAbsolutePath()+"/config.xml"), this.MainClass.security.getSecKey(this)));
+			Document doc = builder.build(new StringReader(xmlFile));
+			Log.log("Configfile has been read.");
+			Element rootElement = doc.getRootElement();
+			XMLOutputter out = new XMLOutputter();
+			out.output( doc, System.out );
+			
+		} catch (JDOMException | IOException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeySpecException e)
+		{
+			Log.logError("Cant't load the configfile.", e);
 		}
 		
 		
@@ -47,6 +77,20 @@ public class Config
 		}
 		
 		this.MainClass.security.genNewKeys(workspacePath);
+		this.genNewConfig(workspacePath);
+		
+	}
+
+	private void genNewConfig(String workspacePath)
+	{
+		File configFile = new File(workspacePath + "/config.xml");
+		try
+		{
+			this.MainClass.security.writeConfig(getClass().getClassLoader().getResourceAsStream("de/nkpmedia/jservercontrol/config/basicConfig.xml"),configFile);
+		} catch (Exception e)
+		{
+			Log.logError("Can't write basic configfile", e);
+		}
 		
 	}
 
