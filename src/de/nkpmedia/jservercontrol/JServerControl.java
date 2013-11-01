@@ -1,8 +1,5 @@
 package de.nkpmedia.jservercontrol;
 
-import de.nkpmedia.jservercontrol.model.config.Config;
-import de.nkpmedia.jservercontrol.model.config.Security;
-
 public class JServerControl
 {
 

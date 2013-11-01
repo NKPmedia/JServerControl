@@ -1,6 +1,5 @@
 package de.nkpmedia.jservercontrol;
 
-import de.nkpmedia.jservercontrol.gui.UserInterface;
 import de.nkpmedia.jservercontrol.model.config.Config;
 import de.nkpmedia.jservercontrol.model.config.Security;
 

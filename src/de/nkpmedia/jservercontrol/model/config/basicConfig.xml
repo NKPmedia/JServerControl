@@ -2,12 +2,9 @@
     <hosts>
     	<host name="Test">
     		<data>
-	    		<ip>
-	    			192.168.222.222
-	    		</ip>
-	    		<port>
-	    			22
-	    		</port>
+	    		<ip>192.168.222.222</ip>
+	    		<port>22</port>
+	    		<passwd>22</passwd>
     		</data>
     	</host>
     </hosts>
