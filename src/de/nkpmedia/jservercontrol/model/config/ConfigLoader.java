@@ -14,9 +14,9 @@ import de.nkpmedia.jservercontrol.model.elements.ServiceGroup;
 public class ConfigLoader
 {
 
-	private ArrayList<ServiceGroup> serviceGroups = new ArrayList<ServiceGroup>();
-	private ArrayList<Service> services = new ArrayList<Service>();
-	private ArrayList<Host> hosts = new ArrayList<Host>();
+	public ArrayList<ServiceGroup> serviceGroups = new ArrayList<ServiceGroup>();
+	public ArrayList<Service> services = new ArrayList<Service>();
+	public ArrayList<Host> hosts = new ArrayList<Host>();
 	
 	//Looks for the elements with the information about the elements, and starts the methods to load the informations
 	public ConfigLoader(Document doc)
