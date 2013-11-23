@@ -24,7 +24,7 @@ public class ConfigLoader
 		Element rootNode = doc.getRootElement();
 		List<Element> rootNoteList = rootNode.getChildren();
 	    Log.log("Loading the root element of the config");
-	    // simple iteration to see the result on console
+	    // simple iteration to load the config
 	    for(int i=0;i<=rootNoteList.size()-1;i++){
 	    	Element element = rootNoteList.get(i);
 	    	Log.log("Loading the "+element.getName());

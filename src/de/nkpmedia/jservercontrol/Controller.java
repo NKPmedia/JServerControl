@@ -15,6 +15,8 @@ public class Controller
 		this.userInterface = new UserInterface(this);
 		
 		this.model = new Model(this);
+		
+		this.userInterface.startMainWindow();
 	}
 
 	public int showConfirmDialog(Component object, String string)
@@ -30,5 +32,11 @@ public class Controller
 	public String showInputDialog(String string)
 	{
 		return this.userInterface.showInputDialog(string);
+	}
+
+	public void pressedOptionAllButton()
+	{
+		this.model.eventHandler.pressedOptionAllButton();
+		
 	}
 }

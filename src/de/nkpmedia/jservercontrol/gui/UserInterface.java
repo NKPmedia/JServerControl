@@ -8,7 +8,8 @@ import de.nkpmedia.jservercontrol.Controller;
 public class UserInterface
 {
 	public GUIJOptionPanel jOptionPanel;
-	private Controller controller;
+	public Controller controller;
+	private MainWindow mainWindow;
 
 	public UserInterface(Controller controller)
 	{
@@ -16,7 +17,13 @@ public class UserInterface
 		
 		this.jOptionPanel = new GUIJOptionPanel();
 	}
-
+	
+	public void startMainWindow(){
+		//Start the main window
+		this.mainWindow = new MainWindow(this);
+		this.mainWindow.frame.setVisible(true);
+	}
+	
 	public int schowConfirmDialog(Component object, String string)
 	{
 		return this.jOptionPanel.schowConfirmDialog(object,string);

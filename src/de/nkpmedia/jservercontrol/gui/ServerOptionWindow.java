@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MainWindows
+public class ServerOptionWindow
 {
 
 	private JFrame frame;
@@ -20,7 +20,7 @@ public class MainWindows
 			{
 				try
 				{
-					MainWindows window = new MainWindows();
+					ServerOptionWindow window = new ServerOptionWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -33,7 +33,7 @@ public class MainWindows
 	/**
 	 * Create the application.
 	 */
-	public MainWindows()
+	public ServerOptionWindow()
 	{
 		initialize();
 	}

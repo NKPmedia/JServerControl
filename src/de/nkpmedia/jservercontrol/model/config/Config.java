@@ -35,8 +35,9 @@ public class Config
 			int pane = this.model.controller.showConfirmDialog( null, "Wollen sie eine neue Arbeitsumgebung erstellen?" );
 			if(pane == 0){
 				createNewWorkspace(workspace.getAbsolutePath());
+			}
 		}
-	}
+		
 		Log.log("Reading configfile");
 		SAXBuilder builder = new SAXBuilder();
 		try
@@ -72,7 +73,8 @@ public class Config
 		this.genNewConfig(workspacePath);
 		
 	}
-
+	
+	//Generat new Config at a special path
 	private void genNewConfig(String workspacePath)
 	{
 		File configFile = new File(workspacePath + "/config.xml");

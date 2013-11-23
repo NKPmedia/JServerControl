@@ -12,12 +12,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class JServerMonitorPanel extends JPanel
 {
-	private JLabel domainLabel;
-	private JLabel nameLabel;
-	private JCheckBox aktivCheckBox;
-	private JLabel portLabel;
-	private JButton optionsButton;
-	private JLabel statusLabel;
+	public JLabel domainLabel;
+	public JLabel nameLabel;
+	public JCheckBox aktivCheckBox;
+	public JLabel portLabel;
+	public JButton optionsButton;
+	public JLabel statusLabel;
 	JServerMonitorPanel (){
 		super();
 		this.init();
