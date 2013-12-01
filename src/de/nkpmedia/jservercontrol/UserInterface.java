@@ -1,9 +1,10 @@
-package de.nkpmedia.jservercontrol.gui;
+package de.nkpmedia.jservercontrol;
 
 import java.awt.Component;
 import java.io.File;
 
-import de.nkpmedia.jservercontrol.Controller;
+import de.nkpmedia.jservercontrol.gui.GUIJOptionPanel;
+import de.nkpmedia.jservercontrol.gui.MainWindow;
 
 public class UserInterface
 {

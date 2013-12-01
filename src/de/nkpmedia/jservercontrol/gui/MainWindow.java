@@ -1,6 +1,7 @@
 package de.nkpmedia.jservercontrol.gui;
 
 import de.nkpmedia.jservercontrol.Controller;
+import de.nkpmedia.jservercontrol.UserInterface;
 import de.nkpmedia.jservercontrol.gui.handler.MainWindowEventHandler;
 
 public class MainWindow extends MainWindowBasic

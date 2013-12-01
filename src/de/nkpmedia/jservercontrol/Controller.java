@@ -3,8 +3,6 @@ package de.nkpmedia.jservercontrol;
 import java.awt.Component;
 import java.io.File;
 
-import de.nkpmedia.jservercontrol.gui.UserInterface;
-
 public class Controller
 {	
 	private Model model;
