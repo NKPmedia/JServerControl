@@ -1,5 +1,6 @@
 package de.nkpmedia.jservercontrol.gui;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import de.nkpmedia.jservercontrol.Controller;
@@ -13,7 +14,7 @@ public class MainWindow extends MainWindowBasic
 	private MainWindowEventHandler mainWindowEventHandler;
 	public Controller controller;
 	public UserInterface userInterface;
-	private ArrayList jServerMonitorPanelList = new ArrayList();
+	private ArrayList<JServerMonitorPanel> jServerMonitorPanelList = new ArrayList<JServerMonitorPanel>();
 
 	public MainWindow(UserInterface userInterface)
 	{
@@ -27,6 +28,7 @@ public class MainWindow extends MainWindowBasic
 	private void addListener()
 	{
 		super.optionAllButton.addActionListener(this.mainWindowEventHandler);
+		super.selectAll.addChangeListener(this.mainWindowEventHandler);
 	}
 
 	//Loada all JServerMonitorPanels in the centerPanel
@@ -59,9 +61,10 @@ public class MainWindow extends MainWindowBasic
 		return tmpPanel;
 	}
 
-	public void pressedOptionAllButton()
+	public void changedSelectAllButton(boolean selected)
 	{
-		// TODO Auto-generated method stub
-		
+		for(JServerMonitorPanel panel : this.jServerMonitorPanelList){
+			panel.aktivCheckBox.setSelected(selected);
+		}
 	}
 }

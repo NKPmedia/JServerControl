@@ -3,10 +3,15 @@ package de.nkpmedia.jservercontrol.gui.handler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import de.nkpmedia.jservercontrol.gui.MainWindow;
 import de.nkpmedia.jservercontrol.gui.ServerOptionWindow;
 
-public class MainWindowEventHandler implements ActionListener
+public class MainWindowEventHandler implements ActionListener, ChangeListener
 {
 
 	private MainWindow mainWindow;
@@ -21,8 +26,20 @@ public class MainWindowEventHandler implements ActionListener
 	{
 		if(e.getSource() == this.mainWindow.optionAllButton)
 		{
-			this.mainWindow.pressedOptionAllButton();
+			this.mainWindow.userInterface.controller.pressedOptionAllButton();
         } 
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent arg0)
+	{
+		AbstractButton abstractButton = (AbstractButton)arg0.getSource();
+		ButtonModel buttonModel = abstractButton.getModel();
+		boolean selected = buttonModel.isSelected();
+		if(buttonModel.isPressed())
+		{
+			this.mainWindow.changedSelectAllButton(selected);   
+		}
 	}
 
 }

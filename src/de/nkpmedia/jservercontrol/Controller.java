@@ -37,6 +37,12 @@ public class Controller
 		return this.userInterface.showInputDialog(string);
 	}
 
+	public void pressedOptionAllButton()
+	{
+		this.model.eventHandler.pressedOptionAllButton();
+		
+	}
+
 
 	public ArrayList<Host> getServerList()
 	{

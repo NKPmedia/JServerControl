@@ -39,7 +39,7 @@ public class MainWindowBasic
 	public JScrollPane centerScroll;
 	public JButton optionAllButton;
 	public JMenuBar menuBar;
-	public Component selectAll;
+	public JCheckBox selectAll;
 	
 	/**
 	 * Launch the application.
