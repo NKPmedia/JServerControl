@@ -8,7 +8,8 @@ public class Host
 	public String port;
 	public String passwd;
 	public String status = "Offline";
-	
+	public String osType;
+	public String packageSystemType;
 	
 	public void refreshData()
 	{
