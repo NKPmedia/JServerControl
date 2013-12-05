@@ -14,11 +14,14 @@ public class MainWindowEventHandler implements ActionListener
 	public MainWindowEventHandler(MainWindow mainWindow){
 		this.mainWindow = mainWindow;
 	}
+	
+	//Handels the events but does no more than give some tasks back to the model
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == this.mainWindow.optionAllButton){
-			this.mainWindow.userInterface.controller.pressedOptionAllButton();
+		if(e.getSource() == this.mainWindow.optionAllButton)
+		{
+			this.mainWindow.pressedOptionAllButton();
         } 
 	}
 

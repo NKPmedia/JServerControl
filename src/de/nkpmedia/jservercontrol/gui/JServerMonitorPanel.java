@@ -1,5 +1,6 @@
 package de.nkpmedia.jservercontrol.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.GroupLayout;
@@ -68,5 +69,18 @@ public class JServerMonitorPanel extends JPanel
         			.addContainerGap(530, Short.MAX_VALUE))
         );
         this.setLayout(gl_panel_1);
+	}
+
+	public void setStatusLabel(String status)
+	{
+		this.statusLabel.setText(status);
+		if(status.equals("Online"))
+		{
+			this.statusLabel.setForeground(Color.GREEN);
+		}
+		else
+		{
+			this.statusLabel.setForeground(Color.RED);
+		}
 	}
 }

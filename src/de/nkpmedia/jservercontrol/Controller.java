@@ -2,6 +2,9 @@ package de.nkpmedia.jservercontrol;
 
 import java.awt.Component;
 import java.io.File;
+import java.util.ArrayList;
+
+import de.nkpmedia.jservercontrol.model.elements.Host;
 
 public class Controller
 {	
@@ -15,7 +18,9 @@ public class Controller
 		this.model = new Model(this);
 		
 		this.userInterface.startMainWindow();
+		this.userInterface.serverPanelReload();
 	}
+
 
 	public int showConfirmDialog(Component object, String string)
 	{
@@ -32,9 +37,9 @@ public class Controller
 		return this.userInterface.showInputDialog(string);
 	}
 
-	public void pressedOptionAllButton()
+
+	public ArrayList<Host> getServerList()
 	{
-		this.model.eventHandler.pressedOptionAllButton();
-		
+		return this.model.getServerList();
 	}
 }

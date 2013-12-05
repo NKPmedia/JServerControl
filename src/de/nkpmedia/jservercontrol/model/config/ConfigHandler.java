@@ -20,4 +20,18 @@ public class ConfigHandler
 		this.serviceGroups = configLoader.serviceGroups;
 	}
 
+	public ArrayList<Host> getServerList()
+	{
+		this.refreshAllHosts();
+		return this.hosts;
+	}
+
+	private void refreshAllHosts()
+	{
+		for(Host host : hosts){
+			host.refreshData();
+		}
+		
+	}
+
 }

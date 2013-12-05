@@ -7,5 +7,13 @@ public class Host
 	public String ip;
 	public String port;
 	public String passwd;
+	public String status = "Offline";
+	
+	
+	public void refreshData()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -2,9 +2,11 @@ package de.nkpmedia.jservercontrol;
 
 import java.awt.Component;
 import java.io.File;
+import java.util.ArrayList;
 
 import de.nkpmedia.jservercontrol.gui.GUIJOptionPanel;
 import de.nkpmedia.jservercontrol.gui.MainWindow;
+import de.nkpmedia.jservercontrol.model.elements.Host;
 
 public class UserInterface
 {
@@ -39,5 +41,11 @@ public class UserInterface
 	{
 		return this.jOptionPanel.showInputDialog(string);
 		
+	}
+
+	public void serverPanelReload()
+	{
+		ArrayList<Host> serverList = this.controller.getServerList();
+		this.mainWindow.reloadServerPanel(serverList);
 	}
 }
